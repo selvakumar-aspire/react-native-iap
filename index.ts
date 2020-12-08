@@ -768,6 +768,16 @@ export const buyPromotedProductIOS = (): Promise<void> =>
     android: async () => Promise.resolve(),
   })();
 
+export const buyProductWithOfferCodeIOS = (): Promise<void> =>
+  Platform.select({
+    ios: async () => {
+      await checkNativeiOSAvailable();
+
+      return RNIapIos.buyProductWithOfferCode();
+    },
+    android: async () => Promise.resolve(),
+  })();
+
 /**
  * Buy products or subscriptions with offers (iOS only)
  *
@@ -975,6 +985,7 @@ const iapUtils = {
   getReceiptIOS,
   getPromotedProductIOS,
   buyPromotedProductIOS,
+  buyProductWithOfferCodeIOS,
   presentCodeRedemptionSheetIOS,
 };
 

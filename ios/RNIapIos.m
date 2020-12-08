@@ -140,6 +140,12 @@ RCT_EXPORT_METHOD(getAvailableItems:(RCTPromiseResolveBlock)resolve
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
+RCT_EXPORT_METHOD(buyProductWithOfferCode:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject) {
+    [self addPromiseForKey:@"buyWithOfferCode" resolve:resolve reject:reject];
+    [[SKPaymentQueue defaultQueue] presentCodeRedemptionSheet];
+}
+
 RCT_EXPORT_METHOD(buyProduct:(NSString*)sku
                   andDangerouslyFinishTransactionAutomatically:(BOOL)finishAutomatically
                   resolve:(RCTPromiseResolveBlock)resolve
